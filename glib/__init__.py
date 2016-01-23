@@ -1,8 +1,8 @@
-# -*- Mode: Python -*-
+# -*- Mode: Python; py-indent-offset: 4 -*-
 # pygobject - Python bindings for the GObject library
-# Copyright (C) 2008  Johan Dahlin
+# Copyright (C) 2006-2008 Johan Dahlin
 #
-#   gio/__init__.py: initialisation file for gio module
+#   glib/__init__.py: initialisation file for glib module
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -19,22 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301
 # USA
 
-from gobject import GObjectMeta
-from _gio import *
-from _gio import \
-     _app_info_init, _install_app_info_meta, \
-     _file_init, _install_file_meta
-try:
-    import unix
-    unix # pyflakes
-except ImportError:
-    unix = None
-del _gio
+from glib._glib import *
+_PyGLib_API = _glib._PyGLib_API
 
-class GFileMeta(GObjectMeta):
-    __call__ = _file_init
-_install_file_meta(GFileMeta)
-
-class GAppInfoMeta(GObjectMeta):
-    __call__ = _app_info_init
-_install_app_info_meta(GAppInfoMeta)
+del _glib
